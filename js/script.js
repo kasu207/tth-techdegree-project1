@@ -10,7 +10,7 @@ project 1 - A Random Quote Generator
 /*** 
  * `quotes` array 
 ***/
-let quotes = [
+const quotes = [
   {
     quote: 'A wonderful fact to reflect upon, that every human creature is constituted to be that profound secret and mystery to every other.',
     source: 'Charles Dickens',
@@ -26,8 +26,8 @@ let quotes = [
   {
     quote: 'Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live',
     source: 'John Woods',
-    citation:'',
-    year:''
+    citation: '',
+    year: ''
   },
   {
     quote: "You've baked a really lovely cake, but then you've used dog shit for frosting.",
@@ -59,18 +59,39 @@ let quotes = [
 /***
  * `getRandomQuote` function
 ***/
-function getRandomQuote(){
-  let rand;
-  
+function getRandomQuote(quoteArr){
+  let low = 0; //Define initial index of array
+  let high = quoteArr.length; //Define max length of array
+  let randQuote = Math.floor(Math.random() * (high - low + 1) ) - low; //generate random number between 0 and length of array
+
+  for(let i = 0; i < high; i++){  //find random quote qith the random number
+    return quoteArr[randQuote];
+  }
 
 }
-
+console.log(getRandomQuote(quotes));
 
 /***
  * `printQuote` function
 ***/
-
-
+function printQuote(){
+  //store Randomquote
+  let prQuote = getRandomQuote(quotes);
+  let html = `<p class="quote"> ${prQuote.quote} </p><p class="source"> ${prQuote.source}`;
+  
+  if (!(prQuote.citation === '')){
+    html += ` 
+      <span class="citation"> ${prQuote.citation} </span>
+    `;
+  }
+  if (!(prQuote.year === '')){
+    html += `<span class="citation"> ${prQuote.year} </span>`;
+  }
+  html += '</p>';
+  console.log(html);
+  return html;
+}
+document.getElementById('quote-box').innerHTML = printQuote(); 
 
 /***
  * click event listener for the print quote button
