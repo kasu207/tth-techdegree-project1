@@ -89,9 +89,9 @@ function printQuote(){
   }
   html += '</p>';
   console.log(html);
-  return html;
+  return document.getElementById('quote-box').innerHTML = html; ;
 }
-document.getElementById('quote-box').innerHTML = printQuote(); 
+
 
 /***
  * click event listener for the print quote button
