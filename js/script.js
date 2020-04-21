@@ -114,7 +114,8 @@ function printQuote(){
   return document.getElementById('quote-box').innerHTML = html; ;
 }
 
-
+//Reload every 7 seconds
+setInterval(printQuote, 7000);
 
 /***
  * click event listener for the print quote button
