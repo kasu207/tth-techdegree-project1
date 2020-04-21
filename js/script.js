@@ -9,6 +9,11 @@ project 1 - A Random Quote Generator
 
 /*** 
  * `quotes` array 
+ * quote - string - contains the quote
+ * source - string - contains the "auhtor" of the quote
+ * citation - string - contains the medium the quote is taken from
+ * year - integer - represents the published year of the quote
+ * topic - string - represents a general topic the quote is related to.
 ***/
 const quotes = [
   {
@@ -33,19 +38,21 @@ const quotes = [
     topic: 'coding'
   },
   {
-    quote: "You've baked a really lovely cake, but then you've used dog shit for frosting.",
+    quote: 'You\'ve baked a really lovely cake, but then you\'ve used dog shit for frosting.',
     source: 'Steve Jobs',
     citation: '',
     year:'',
     topic: 'coding'
   },
-  {quote: 'Object-oriented programming offers a sustainable way to write spaghetti code. It lets you accrete programs as a series of patches.',
+  {
+    quote: 'Object-oriented programming offers a sustainable way to write spaghetti code. It lets you accrete programs as a series of patches.',
     source: 'Paul Graham',
     citation: ' Hackers & Painters: Big Ideas from the Computer Age',
     year: 2004,
     topic: 'coding'
   },
-  {quote: 'If you ever find yourself in the wrong story, leave.',
+  {
+    quote: 'If you ever find yourself in the wrong story, leave.',
     source: 'Mo Willems',
     citation: 'Goldilocks and the Three Dinosaurs',
     year:2012,
@@ -66,17 +73,15 @@ const quotes = [
 /***
  * `getRandomQuote` function
 ***/
-function getRandomQuote(quoteArr){
-  let low = 0; //Define initial index of array
-  let high = quoteArr.length; //Define max length of array
-  let randQuote = Math.floor(Math.random() * (high - low + 1) ) - low; //generate random number between 0 and length of array
+function getRandomQuote(){
+  let randQuote = Math.floor(Math.random() * (quotes.length)); //generate random number 
 
-  for(let i = 0; i < high; i++){  //find random quote qith the random number
-    return quoteArr[randQuote];
-  }
+  //find random quote in the random number
+  return quotes[randQuote];
+
 
 }
-console.log(getRandomQuote(quotes));
+//console.log(getRandomQuote(quotes));
 
 /***
  * RandomBackGroundColor Generator
@@ -86,7 +91,7 @@ function randomBgColor(){
   let green = Math.floor(Math.random() * 256);
   let blue = Math.floor(Math.random() * 256);
   let bgColor = `rgb(${red},${green},${blue})`;
-  console.log(bgColor);
+  //console.log(bgColor);
   document.body.style.background = bgColor;
 }
 /***
@@ -94,22 +99,29 @@ function randomBgColor(){
 ***/
 function printQuote(){
   //store Randomquote
-  let prQuote = getRandomQuote(quotes);
-  let html = `<p class="quote"> ${prQuote.quote} </p><p class="source"> ${prQuote.source}`;
+  let prQuote = getRandomQuote();
+  let html = `
+    <p class="quote"> ${prQuote.quote} </p>
+    <p class="source"> ${prQuote.source}`;
   
+  //check if property of citation hast content
   if (!(prQuote.citation === '')){
     html += ` 
       <span class="citation"> ${prQuote.citation} </span>
     `;
   }
+  //check if property of year hast content
   if (!(prQuote.year === '')){
-    html += `<span class="citation"> ${prQuote.year} </span>`;
+    html += `<span class="year"> ${prQuote.year} </span>`;
   }
+  //check if property of topic hast content
   if (!(prQuote.topic === '')){
-    html += `<span class="topic"> ${prQuote.topic} </span>`;
+    html += `<span class="topic"> ,${prQuote.topic} </span>`;
   }
   html += '</p>';
-  console.log(html);
+
+  //console.log(html);
+  
   randomBgColor();
   return document.getElementById('quote-box').innerHTML = html; ;
 }
