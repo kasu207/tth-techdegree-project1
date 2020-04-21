@@ -101,22 +101,22 @@ function printQuote(){
   //store Randomquote
   let prQuote = getRandomQuote();
   let html = `
-    <p class="quote"> ${prQuote.quote} </p>
-    <p class="source"> ${prQuote.source}`;
+    <p class="quote">${prQuote.quote}</p>
+    <p class="source">${prQuote.source}`;
   
   //check if property of citation hast content
   if (!(prQuote.citation === '')){
     html += ` 
-      <span class="citation"> ${prQuote.citation} </span>
+      <span class="citation">${prQuote.citation}</span>
     `;
   }
   //check if property of year hast content
   if (!(prQuote.year === '')){
-    html += `<span class="year"> ${prQuote.year} </span>`;
+    html += `<span class="year">${prQuote.year}</span>`;
   }
   //check if property of topic hast content
   if (!(prQuote.topic === '')){
-    html += `<span class="topic"> ,${prQuote.topic} </span>`;
+    html += `<span class="topic">${prQuote.topic}</span>`;
   }
   html += '</p>';
 
